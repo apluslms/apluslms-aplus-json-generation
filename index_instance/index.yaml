@@ -1,0 +1,712 @@
+categories:
+  active elements:
+    name: active elements
+  chapter:
+    name: chapter
+    status: nototal
+  questionnaire:
+    name: questionnaire
+  submit:
+    name: submit
+end: 2020-06-06 12:00
+language: en
+modules:
+- children:
+  - category: chapter
+    children: []
+    key: 01_installation
+    name: First Steps
+    static_content: m01_introduction/01_installation.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 0X_gallery
+    name: Gallery of features
+    static_content: m01_introduction/0X_gallery.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 02_rst
+    name: Developing course material using reStructuredText (RST)
+    static_content: m01_introduction/02_rst.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 03_css
+    name: Style of course pages with CSS
+    static_content: m01_introduction/03_css.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 04_git
+    name: 'git: backing up and collaborating'
+    static_content: m01_introduction/04_git.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 05_docker
+    name: Docker
+    static_content: m01_introduction/05_docker.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: questionnaire
+      config: m01_introduction_06_languages_1.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m01_introduction_06_languages_1
+      max_group_size: 1
+      max_points: 2
+      max_submissions: 5
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 06_languages
+    name: Multilingual course (i18n)
+    static_content: m01_introduction/06_languages.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: questionnaire
+      config: m01_introduction_07_questionnaires_questionnaire_demo.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m01_introduction_07_questionnaires_questionnaire_demo
+      max_group_size: 1
+      max_points: 20
+      max_submissions: 3
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: questionnaire
+      config: m01_introduction_07_questionnaires_questionnaire_text_demo.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m01_introduction_07_questionnaires_questionnaire_text_demo
+      max_group_size: 1
+      max_points: 15
+      max_submissions: 3
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: questionnaire
+      config: m01_introduction_07_questionnaires_questionnaire_text_demo_2.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m01_introduction_07_questionnaires_questionnaire_text_demo_2
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 5
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: questionnaire
+      config: m01_introduction_07_questionnaires_questionnaire_regexp.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m01_introduction_07_questionnaires_questionnaire_regexp
+      max_group_size: 1
+      max_points: 20
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 07_questionnaires
+    name: Creating questionnaire exercises
+    static_content: m01_introduction/07_questionnaires.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m01_introduction
+  name: Module 1 - Introduction
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: 01_instructions
+    name: Writing programming exercises
+    static_content: m02_programming_exercises/01_instructions.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_02_hello_world_python.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_02_hello_world_python
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_02_hello_world_scala.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_02_hello_world_scala
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_02_hello_world_javascript.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_02_hello_world_javascript
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 02_hello_world
+    name: Hello Worlds
+    static_content: m02_programming_exercises/02_hello_world.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_03_personalized_exercises_personalized_number.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_03_personalized_exercises_personalized_number
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_03_personalized_exercises_personalized_python.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_03_personalized_exercises_personalized_python
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 03_personalized_exercises
+    name: Personalized exercises
+    static_content: m02_programming_exercises/03_personalized_exercises.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 04_debugging_in_container
+    name: How to debug a container
+    static_content: m02_programming_exercises/04_debugging_in_container.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_05_radar_python_radar.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_05_radar_python_radar
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_05_radar_scala_radar.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_05_radar_scala_radar
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_05_radar_javascript_radar.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_05_radar_javascript_radar
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 05_radar
+    name: 'Radar: Exercises with automatic similarity analysis'
+    static_content: m02_programming_exercises/05_radar.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_06_graphics_turtles.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_06_graphics_turtles
+      max_group_size: 1
+      max_points: 100
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 06_graphics
+    name: Exercises with 2D computer graphics
+    static_content: m02_programming_exercises/06_graphics.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      config: m02_programming_exercises_07_web_frontend_clock.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m02_programming_exercises_07_web_frontend_clock
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: 07_web_frontend
+    name: Web frontend exercises
+    static_content: m02_programming_exercises/07_web_frontend.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m02_programming_exercises
+  name: Module 2 - Programming exercises
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: introduction
+    name: Acos - Advanced Content Server
+    static_content: m03_acos/introduction.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_1
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: JSVEE Python while loop
+      url: http://172.21.0.4:3000/aplus/jsvee/jsvee-python/ae_python_while
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_2
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: jsparsons Python while loop
+      url: http://172.21.0.4:3000/aplus/jsparsons/jsparsons-python/ps_python_iteration_addition
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_3
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Point and click Aalto
+      url: http://172.21.0.4:3000/aplus/pointandclick/pointandclick-example/Aaltodemo
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_4
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Point and click algorithms
+      url: http://172.21.0.4:3000/aplus/pointandclick/pointandclick-example/Algorithms
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_5
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Point and click Creative Commons
+      url: http://172.21.0.4:3000/aplus/pointandclick/pointandclick-example/cc-Creative_commons
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_6
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Point and click commas
+      url: http://172.21.0.4:3000/aplus/pointandclick/pointandclick-example/commas-Commas
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_7
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Point and click fruit images
+      url: http://172.21.0.4:3000/aplus/pointandclick/pointandclick-example/images-fruit
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_8
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop short
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/short
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_9
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop onto text
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/dragontext
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_10
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop long gibberish
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/longgibberish
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_11
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop reveal demo
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/revealdemo
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_12
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop algorithms
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/articles-Algorithms
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: submit
+      difficulty: ''
+      key: m03_acos_demo_exercises_13
+      max_group_size: 1
+      max_points: 10
+      max_submissions: 10
+      min_group_size: 1
+      points_to_pass: 0
+      scale_points: 10
+      status: unlisted
+      title: Drag and drop fruit images
+      url: http://172.21.0.4:3000/aplus/draganddrop/draganddrop-example/images-fruit
+    key: demo_exercises
+    name: Examples of Acos exercises
+    static_content: m03_acos/demo_exercises.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m03_acos
+  name: Module 3 - Acos server
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: 01_virtualenv_to_docker
+    name: Converting an existing A+ course to Docker
+    static_content: m04_converting/01_virtualenv_to_docker.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 02_chapter_workflow
+    name: The workflow for converting a chapter
+    static_content: m04_converting/02_chapter_workflow.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m04_converting
+  name: Module 4 - Converting an old course for current A+
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: introduction
+    name: LTI in A+
+    static_content: m05_lti/introduction.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: configuration
+    name: LTI configuration in A+
+    static_content: m05_lti/configuration.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: lti_matlab_grader
+    name: MATLAB Grader exercises
+    static_content: m05_lti/lti_matlab_grader.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m05_lti
+  name: Module 5 - External LTI (Learning Tools Interoperability) exercises and services
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: 01_introduction
+    name: Introduction to Rubyric
+    static_content: m06_rubyric/01_introduction.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 02_getting_started
+    name: Getting Started with Rubyric
+    static_content: m06_rubyric/02_getting_started.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 03_rubrics_and_reviews
+    name: Rubrics and Reviews
+    static_content: m06_rubyric/03_rubrics_and_reviews.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 04_roles_and_groups
+    name: Roles and groups
+    static_content: m06_rubyric/04_roles_and_groups.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m06_rubyric
+  name: Module 6 - Rubyric
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: 01_setup
+    name: Setting a course on production servers
+    static_content: m07_admin/01_setup.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children: []
+    key: 02_settings
+    name: Course settings
+    static_content: m07_admin/02_settings.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m07_admin
+  name: Module 7 - Course administration
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children: []
+    key: introduction
+    name: Moodle Astra plugin
+    static_content: m08_moodle_astra/introduction.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m08_moodle_astra
+  name: Module 8 - Moodle Astra plugin
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+- children:
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: active elements
+      config: m09_active_elements_introduction_min_output.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m09_active_elements_introduction_min_output
+      max_group_size: 1
+      max_points: 0
+      max_submissions: 0
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: introduction
+    name: Active elements
+    static_content: m09_active_elements/introduction.html
+    status: ready
+    use_wide_column: true
+  - category: chapter
+    children:
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: active elements
+      config: m09_active_elements_octave_examples_exponentialdist.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m09_active_elements_octave_examples_exponentialdist
+      max_group_size: 1
+      max_points: 0
+      max_submissions: 0
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    - allow_assistant_grading: false
+      allow_assistant_viewing: true
+      category: active elements
+      config: m09_active_elements_octave_examples_twodimnormaldist.yaml
+      confirm_the_level: false
+      difficulty: ''
+      key: m09_active_elements_octave_examples_twodimnormaldist
+      max_group_size: 1
+      max_points: 0
+      max_submissions: 0
+      min_group_size: 1
+      points_to_pass: 0
+      status: unlisted
+    key: octave_examples
+    name: Octave active element examples
+    static_content: m09_active_elements/octave_examples.html
+    status: ready
+    use_wide_column: true
+  close: 2020-06-06 12:00
+  key: m09_active_elements
+  name: Module 9 - Active elements
+  open: 2016-06-01 12:00
+  points_to_pass: 0
+  status: ready
+name: A sample course
+start: 2016-06-01 12:00
+static_dir: _build/html
