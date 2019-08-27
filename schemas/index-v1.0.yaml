@@ -16,6 +16,10 @@ definitions:
         - en
       - required:
         - fi
+#    required:
+#      anyOf:
+#        - en
+#        - fi
     properties:
       en:
         type: string
