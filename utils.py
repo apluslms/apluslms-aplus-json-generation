@@ -1,11 +1,23 @@
 import os
 import sys
-from io import BytesIO
-import tarfile
-import requests
-from math import floor
-from operator import itemgetter
-import json, yaml
+import logging
+import json
+import ruamel.yaml as ryaml
+from collections import OrderedDict
+
+
+logger = logging.getLogger(__name__)
+
+
+class Representer(ryaml.representer.RoundTripRepresenter):
+    pass
+
+
+Representer.add_representer(OrderedDict, Representer.represent_dict)
+
+yaml = ryaml.YAML()
+yaml.default_flow_style = False
+yaml.Representer = Representer
 
 
 def url_to_static(static_url, course_key, path):
@@ -13,7 +25,11 @@ def url_to_static(static_url, course_key, path):
     return '{}{}/{}'.format(static_url, course_key, path)
 
 
-def update_url(static_url, course_key, data):
+def url_to_exercise(exercise_url, course_key, exercise_key):
+    return r'{}{}/{}'.format(exercise_url, course_key, exercise_key)
+
+
+def update_static_url(static_url, course_key, data):
     """ Update static_content to url"""
     path = data.pop('static_content')
     if isinstance(path, dict):
@@ -27,13 +43,15 @@ def update_url(static_url, course_key, data):
     data['url'] = url
 
 
-def update_index_yaml(static_url, course_key, course_data):
+def update_index_yaml(static_url, exercise_url, course_key, course_data):
     """ Update course data """
     def children_recursion(parent):
         if "children" in parent:
             for o in [o for o in parent["children"] if "key" in o]:
-                if "static_content" in o:
-                    update_url(static_url, course_key, o)
+                if 'config' in o and 'url' not in o:
+                    o['url'] = url_to_exercise(exercise_url, course_key, o['key'])
+                elif "static_content" in o:
+                    update_static_url(static_url, course_key, o)
                 children_recursion(o)
 
     if "modules" in course_data:
@@ -56,8 +74,8 @@ class Parser:
 
     FORMATS = {
         'json': json.load,
-        'yaml': yaml.safe_load,
-        'yml': yaml.safe_load
+        'yaml': yaml.load,
+        'yml': yaml.load
     }
 
     def __init__(self, course_dir):

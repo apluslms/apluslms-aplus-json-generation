@@ -1,10 +1,8 @@
 import logging
 from apluslms_yamlidator.validator import Validator
 from apluslms_yamlidator import schemas
-# from apluslms_yamlidator.utils.yaml import rt_dump
+import requests
 from utils import *
-
-logger = logging.getLogger(__name__)
 
 
 BASE_URL = 'http://localhost:8080/'
@@ -36,16 +34,21 @@ with open(generated_dir+"course.json", "w") as course_json:
 #     raise ValueError('Invalid index.yaml')
 
 # Update urls in index.yaml
-update_index_yaml(STATIC_URL, course_key, course_data)
+update_index_yaml(STATIC_URL, BASE_URL, course_key, course_data)
 
 # Save the updated index.yaml
 with open(generated_dir+'update.yaml', 'w', encoding='utf8') as update_yaml:
-    yaml.dump(course_data, update_yaml,default_flow_style=False)
+    # yaml.dump(course_data, update_yaml, default_flow_style=False,
+    #           allow_unicode=True, sort_keys=False)
+    yaml.dump(course_data, update_yaml)
 _, data_loader = schemas.get_file_loader(generated_dir+'update.yaml')
 update = data_loader()
 with open(generated_dir+"update.json", "w") as update_json:
     json.dump(update, update_json, indent=4, sort_keys=True)
 
+# execise, configs = collect_exercise_keys(course_data)
+# print(execise)
+# print(configs)
 
 os.environ['PLUGIN_API'] = 'http://0.0.0.0:8080/api/v1/'
 os.environ['PLUGIN_TOKEN'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJkZWZfY291cnNlIiwiaWF0IjoxNTYyODI4MzA0L' \
@@ -63,6 +66,6 @@ headers = {
         }
 
 # # Send a request to mooc-grader to update index.yaml
-request = requests.post(update_url, headers=headers, data={'status': 'success'})
-print(request.text)
+# request = requests.post(update_url, headers=headers, data={'status': 'success'})
+# print(request.text)
 
