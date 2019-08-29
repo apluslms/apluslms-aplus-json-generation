@@ -26,7 +26,7 @@ def update_static_url(static_url, course_key, data):
     else:
         url = url_to_static(static_url, course_key, path)
 
-    data['url'] = url
+    return url
 
 
 def update_index_yaml(course_data, course_key, static_url, exercise_url):
@@ -37,21 +37,24 @@ def update_index_yaml(course_data, course_key, static_url, exercise_url):
                 if 'config' in o and 'url' not in o:
                     o['url'] = url_to_exercise(exercise_url, course_key, o['key'])
                 elif "static_content" in o:
-                    update_static_url(static_url, course_key, o)
+                    o['url'] = update_static_url(static_url, course_key, o)
                 children_recursion(o)
 
-    if "modules" in course_data:
-        for m in course_data["modules"]:
+    updated_data = deepcopy(course_data)
+    if "modules" in updated_data:
+        for m in updated_data["modules"]:
             children_recursion(m)
 
-    return course_data
+    return updated_data
 
 
-def aplus_json(course):
+def aplus_json(course, index):
     '''
     Takes a dict and formats it to the form that aplus uses.
     @type course: C{class Course}
-    @param course: contents of course and exercises
+    @param course: an instance of a Course
+    @type index: C{dict}
+    @param index: updated contents of course and exercises (corresponding with the course instance)
     @rtype: C{dict}
     @return: an object representing the configuration file or None
     '''
@@ -59,8 +62,8 @@ def aplus_json(course):
     index_fields = ["name", "description", "lang", "contact", "assistants", "start",
                     "end", "categories", "numerate_ignoring_modules"]
 
-    index = course.get_data()
-    def_lang = course.get_def_lang()
+    default_lang = course.get_def_lang()
+
     data = {}
     _copy_fields(data, index, index_fields)
     if "language" in index:
@@ -73,7 +76,7 @@ def aplus_json(course):
         for o in [o for o in parent["children"] if "key" in o]:
             of = _type_dict(o, index.get("exercise_types", {}))
             if "config" in of:
-                of = _process_config_data(of, course, def_lang)
+                of = _process_config_data(of, course, default_lang)
                 # of = _get_url_to_exercise(of) #TODO
             # elif "static_content" in of:
             #     of = _get_url_to_static(of, index) #TODO
@@ -113,7 +116,7 @@ def _process_config_data(of, course, lang):
             new_data['description'] = exercise.get('description', '')
 
         form, i18n = form_fields(exercise, lang)
-        print(of["key"])
+        # print(of["key"])
         new_data['exercise_info'] = {
             'form_spec': form,
             'form_i18n': i18n,

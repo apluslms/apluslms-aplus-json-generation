@@ -1,5 +1,5 @@
 from parser import Parser
-from utils import update_index_yaml
+
 
 class Course:
 
@@ -13,17 +13,16 @@ class Course:
     def load(self, index_rel_path):
         parser = Parser(self._DIR)
         index = parser.parse(index_rel_path)
-        # index = parser.process_include(index)
+        index = parser.process_include(index)
         keys, configs = parser.collect_exercise_keys(index)
 
-        # config_files = {
-        #     key: parser.parse(path)
-        #     for key, path in confs.items()
-        #     }
+        config_files = {
+            key: parser.parse(path)
+            for key, path in configs.items()
+            }
 
         self._data = index
-        # self._config_files = config_files
-        self._config_files = configs
+        self._config_files = config_files
         self._exercise_keys = keys
         default_lang = index.get("language", None)
         if isinstance(default_lang, list):
@@ -41,10 +40,3 @@ class Course:
 
     def get_def_lang(self):
         return self._default_lang
-
-    def update_data(self, course_key, static_url, exercise_url):
-        updated_data = update_index_yaml(self._data, course_key, static_url, exercise_url)
-        return updated_data
-
-    # def aplus_json(self):
-    #     return aplus_json(self)

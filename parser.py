@@ -4,8 +4,6 @@ import ruamel.yaml as ryaml
 from collections import OrderedDict
 import logging
 
-from utils import update_static_url, url_to_exercise
-
 
 logger = logging.getLogger(__name__)
 
@@ -74,42 +72,42 @@ class Parser:
 
         return data
 
-    # def process_include(self, data):
-    #     """
-    #     Checks for "include" within data and replaces it with appropriate fields.
-    #     @type data: C{dict}
-    #     @param path: dict that might have "include" fields
-    #     @rtype: C{dict}
-    #     @return: the input data with included data
-    #     """
-    #     if data is None:
-    #         logger.debug("Data is empty!")
-    #         return None
-    #
-    #     def rec(m):
-    #         new_data = {}
-    #         if isinstance(m, dict):
-    #             if "include" in m:
-    #                 new_data = self._include(m["include"])
-    #                 m.pop("include")
-    #                 new_data = rec(new_data)
-    #             list_dicts = [o for o in m.items() if isinstance(o[1], dict)]
-    #             for o in list_dicts:
-    #                 m[o[0]] = rec(o[1])
-    #             new_data.update(m)
-    #         if isinstance(m, list):
-    #             new_m = []
-    #             for item in m:
-    #                 new_m.append(rec(item))
-    #             return new_m
-    #         return m
-    #
-    #     return rec(data)
-    #
-    # def _include(self, path):
-    #     os.path.join(self._DIR, path)
-    #     data = self.parse(path)
-    #     return data
+    def process_include(self, data):
+        """
+        Checks for "include" within data and replaces it with appropriate fields.
+        @type data: C{dict}
+        @param path: dict that might have "include" fields
+        @rtype: C{dict}
+        @return: the input data with included data
+        """
+        if data is None:
+            logger.debug("Data is empty!")
+            return None
+
+        def rec(m):
+            new_data = {}
+            if isinstance(m, dict):
+                if "include" in m:
+                    new_data = self._include(m["include"])
+                    m.pop("include")
+                    new_data = rec(new_data)
+                list_dicts = [o for o in m.items() if isinstance(o[1], dict)]
+                for o in list_dicts:
+                    m[o[0]] = rec(o[1])
+                new_data.update(m)
+            if isinstance(m, list):
+                new_m = []
+                for item in m:
+                    new_m.append(rec(item))
+                return new_m
+            return m
+
+        return rec(data)
+
+    def _include(self, path):
+        os.path.join(self._DIR, path)
+        data = self.parse(path)
+        return data
 
     @staticmethod
     def collect_exercise_keys(course):
