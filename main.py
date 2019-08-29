@@ -1,9 +1,10 @@
-import logging
+import os
 from apluslms_yamlidator.validator import Validator
 from apluslms_yamlidator import schemas
+from course import Course
 import requests
-from utils import *
-
+import json
+from parser import yaml
 
 BASE_URL = 'http://localhost:8080/'
 KEY = 'static/'
@@ -24,27 +25,29 @@ with open(generated_dir+"schema.json", "w") as schema_json:
 # _, data_loader = schemas.get_file_loader('index_instance/index.yaml')
 # course_data = data_loader()
 # # course = rt_load(open('index_instance/index.yaml','rb').read())
-parser = Parser(os.getcwd())
-course_data = parser.parse('index_instance/index.yaml')
-with open(generated_dir+"course.json", "w") as course_json:
-    json.dump(course_data, course_json, indent=4, sort_keys=True)
+COURSE_DIR = os.getcwd()
+course = Course(COURSE_DIR)
+course.load('index_instance/index.yaml')
+course_data = course.get_data()
+# with open(generated_dir+"course.json", "w") as course_json:
+#     json.dump(course_data, course_json, indent=4, sort_keys=True)
 
 # Validate index.yaml
 # if not validator.validate(course_data, 'index', major=1):
 #     raise ValueError('Invalid index.yaml')
 
-# Update urls in index.yaml
-update_index_yaml(STATIC_URL, BASE_URL, course_key, course_data)
-
-# Save the updated index.yaml
-with open(generated_dir+'update.yaml', 'w', encoding='utf8') as update_yaml:
-    # yaml.dump(course_data, update_yaml, default_flow_style=False,
-    #           allow_unicode=True, sort_keys=False)
-    yaml.dump(course_data, update_yaml)
-_, data_loader = schemas.get_file_loader(generated_dir+'update.yaml')
-update = data_loader()
-with open(generated_dir+"update.json", "w") as update_json:
-    json.dump(update, update_json, indent=4, sort_keys=True)
+# # Update urls in index.yaml
+# update_index_yaml(STATIC_URL, BASE_URL, course_key, course_data)
+updated_data = course.update_data(course_key, STATIC_URL, BASE_URL)
+# # Save the updated index.yaml
+# with open(generated_dir+'update.yaml', 'w', encoding='utf8') as update_yaml:
+#     # yaml.dump(course_data, update_yaml, default_flow_style=False,
+#     #           allow_unicode=True, sort_keys=False)
+#     yaml.dump(course_data, update_yaml)
+# _, data_loader = schemas.get_file_loader(generated_dir+'update.yaml')
+# update = data_loader()
+# with open(generated_dir+"update.json", "w") as update_json:
+#     json.dump(update, update_json, indent=4, sort_keys=True)
 
 # execise, configs = collect_exercise_keys(course_data)
 # print(execise)
@@ -66,6 +69,11 @@ headers = {
         }
 
 # # Send a request to mooc-grader to update index.yaml
-# request = requests.post(update_url, headers=headers, data={'status': 'success'})
-# print(request.text)
+# r = requests.post(update_url, headers=headers, data={'status': 'success'})
+#
+# parser = Parser(os.getcwd())
+# course_data = parser.parse('generated/update.yaml')
+# course_data = parser.process_include(course_data)
+# print(course_data)
+
 
