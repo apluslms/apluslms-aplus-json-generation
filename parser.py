@@ -44,11 +44,11 @@ class Parser:
         '''
         self._DIR = course_dir
 
-    def parse(self, path, loader=None):
+    def parse(self, rel_path, loader=None):
         """
         Parses a dict from a file.
-        @type path: C{str}
-        @param path: a path to a file
+        @type rel_path: C{str}
+        @param rel_path: a relative path to a file
         @type loader: C{function}
         @param loader: a configuration file stream parser
         @rtype: C{dict}
@@ -56,11 +56,11 @@ class Parser:
         """
         if not loader:
             try:
-                loader = self.FORMATS[os.path.splitext(path)[1][1:]]
+                loader = self.FORMATS[os.path.splitext(rel_path)[1][1:]]
             except:
-                raise ParseError('Unsupported format "%s"' % path)
+                raise ParseError('Unsupported format "%s"' % rel_path)
         data = None
-        path = os.path.join(self._DIR, path)
+        path = os.path.join(self._DIR, rel_path)
         try:
             with open(path) as f:
                 try:
@@ -76,7 +76,7 @@ class Parser:
         """
         Checks for "include" within data and replaces it with appropriate fields.
         @type data: C{dict}
-        @param path: dict that might have "include" fields
+        @param data: dict that might have "include" fields
         @rtype: C{dict}
         @return: the input data with included data
         """
@@ -104,17 +104,17 @@ class Parser:
 
         return rec(data)
 
-    def _include(self, path):
-        os.path.join(self._DIR, path)
+    def _include(self, rel_path):
+        path = os.path.join(self._DIR, rel_path)
         data = self.parse(path)
         return data
 
     @staticmethod
-    def collect_exercise_keys(course):
+    def collect_exercise_keys(course_data):
         """
         Collects exercise_keys and their config paths from course
-        @type course: C{dict}
-        @param course: contents of index.yaml (unvalidated?)
+        @type course_data: C{dict}
+        @param course_data: contents of index.yaml
         @rtype: C{list}, C{list}
         @return: list with all exercise keys and a dictionary with the data
         read from configuration files
@@ -133,10 +133,10 @@ class Parser:
                     if "config" in o:
                         conf = o["config"]
 
-                    elif "type" in o and "exercise_types" in course \
-                            and o["type"] in course["exercise_types"] \
-                            and "config" in course["exercise_types"][o["type"]]:
-                        conf = course["exercise_types"][o["type"]]["config"]
+                    elif "type" in o and "exercise_types" in course_data \
+                            and o["type"] in course_data["exercise_types"] \
+                            and "config" in course_data["exercise_types"][o["type"]]:
+                        conf = course_data["exercise_types"][o["type"]]["config"]
                     else:
                         logger.debug("No key found!")
                     if conf:
@@ -144,8 +144,8 @@ class Parser:
                         config_files[exercise_key] = conf
                 recurse_exercises(o)
 
-        if "modules" in course:
-            modules = course["modules"]
+        if "modules" in course_data:
+            modules = course_data["modules"]
             for m in modules:
                 recurse_exercises(m)
         return exercises, config_files

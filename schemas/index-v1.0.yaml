@@ -11,22 +11,31 @@ definitions:
     pattern: \.(json|yaml|yml)$
   nameTypeA:
     type: object
-    anyOf:
-      - required:
-        - en
-      - required:
-        - fi
-#    required:
-#      anyOf:
+#    anyOf:
+#      - required:
 #        - en
+#      - required:
 #        - fi
     properties:
       en:
         type: string
       fi:
         type: string
+    additionalProperties:
+      type: string
+    minProperties: 2
   nameTypeB:
     type: string
+  languageType:
+    type: string
+  languageTypeA:
+    $ref: '#/definitions/languageType'
+  languageTypeB:
+    type: array
+    uniqueItems: true
+    minItems: 2
+    items:
+      $ref: '#/definitions/languageType'
   statusEnum:
     type: string
     enum:
@@ -140,13 +149,13 @@ properties:
   end:
     $ref: '#/definitions/dateTime'
   language:
-    type: array
-    items:
-      type: string
+    oneOf:
+      - $ref: '#/definitions/languageTypeA'
+      - $ref: '#/definitions/languageTypeB'
   lang:
-    type: array
-    items:
-      type: string
+    oneOf:
+      - $ref: '#/definitions/languageTypeA'
+      - $ref: '#/definitions/languageTypeB'
   name:
     type: string
   contact:

@@ -2,16 +2,7 @@ __pycache__/
 .idea/
 .vscode/
 *.py[cod]
-*$py.class
 
-# pyenv
-.python-version
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+
+
