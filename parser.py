@@ -133,9 +133,10 @@ class Parser:
                     if "config" in o:
                         conf = o["config"]
 
-                    elif "type" in o and "exercise_types" in course_data \
-                            and o["type"] in course_data["exercise_types"] \
-                            and "config" in course_data["exercise_types"][o["type"]]:
+                    elif ("type" in o and
+                          "exercise_types" in course_data and
+                          o["type"] in course_data["exercise_types"] and
+                          "config" in course_data["exercise_types"][o["type"]]):
                         conf = course_data["exercise_types"][o["type"]]["config"]
                     else:
                         logger.debug("No key found!")

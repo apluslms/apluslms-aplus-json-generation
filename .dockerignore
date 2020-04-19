@@ -7,6 +7,11 @@ __pycache__/
 aplus_json/*
 !aplus_json/.keep
 
+*.pyc
 
+Dockerfile
+.dockerignore
+.gitignore
 
-
+run.sh
+unknown/
