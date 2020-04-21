@@ -5,7 +5,7 @@ import requests
 from config import validator, COURSE_DIR, COURSE_YAML_DIR, INDEX_YAML
 from course import Course
 from parser import yaml
-from utils import aplus_json
+from utils import aplus_json, PrintColor
 
 # os.environ['PLUGIN_API'] = 'http://0.0.0.0:8080/api/v1/'
 # os.environ['PLUGIN_TOKEN'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJkZWZfY291cnNlIiwiaWF0IjoxNTYyODI4MzA0L' \
@@ -16,9 +16,11 @@ from utils import aplus_json
 #                              'IHZ7B0hEtFy9rKUWOWfcug'
 # os.environ['PLUGIN_COURSE'] = "def_course"
 
+
 if __name__ == "__main__":
 
     # Load and parse course index.yaml
+    PrintColor.header("Start generating {} A+ json".format(os.environ['PLUGIN_COURSE']))
     course = Course(COURSE_YAML_DIR)
     course.load(INDEX_YAML)
     course_data = course.get_data()
@@ -27,7 +29,8 @@ if __name__ == "__main__":
 
     # Validate index.yaml
     if not validator.validate(course_data, 'index', major=1):
-        raise ValueError('Invalid index.yaml')
+        PrintColor.err("Failed: Invalid index.yaml")
+        raise ValueError('Failed: Invalid index.yaml')
 
     update_url = os.environ['PLUGIN_API'] + os.environ['PLUGIN_COURSE'] + '/update-index-file'
     headers = {
@@ -36,7 +39,8 @@ if __name__ == "__main__":
     # Send a request to mooc-grader to update index.yaml
     r = requests.post(update_url, headers=headers)
     if r.status_code != 200:
-        raise Exception('Fail to update index.yaml: ', r.text)
+        PrintColor.err("Failed: Update index.yaml failed")
+        raise Exception('Failed: Invalid index.yaml: ', r.text)
 
     updated_index = r.json()['updated_index']
     with open(os.path.join(COURSE_YAML_DIR, 'updated_index.yaml'), 'w', encoding='utf8') as updated_yaml:
@@ -48,7 +52,9 @@ if __name__ == "__main__":
     with open(aplus_json_file, "w") as f:
         json.dump(aplus_json, f, indent=4, sort_keys=True)
 
-    print("Aplus json file is generated: {}!".format(os.path.relpath(aplus_json_file, start=COURSE_DIR)))
+    PrintColor.success("Success: A+ json file is generated as {}".
+                       format(os.path.relpath(aplus_json_file, start=COURSE_DIR)))
+
 
 
 
